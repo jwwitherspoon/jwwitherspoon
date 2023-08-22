@@ -7,7 +7,7 @@
     onMount(() => {
         const ctx = canvas.getContext('2d');
         const beef = new Image();
-        beef.src = '/assets/beef.png';
+        beef.src = '/beef.png';
         beef.onload = () => {
             ctx.drawImage(beef, 0, 0);
         };
@@ -19,12 +19,12 @@
 
         // Load and draw beef
         const beef = new Image();
-        beef.src = '/assets/beef.png';
+        beef.src = '/beef.png';
         beef.onload = () => {
             // Load and draw overlay when beef is drawn
             ctx.drawImage(beef, 0, 0);
             const overlay = new Image();
-            overlay.src = imageUrl ? imageUrl : '/assets/beef.png';
+            overlay.src = imageUrl ? imageUrl : '/beef.png';
             overlay.onload = () => {
                 ctx.drawImage(overlay, 32, 32, 32, 32);
             };
