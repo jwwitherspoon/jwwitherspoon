@@ -258,6 +258,7 @@
         background-color: initial;
         border: 1px solid black;
         -webkit-appearance: none;
+        -webkit-border-radius: 0;
     }
 
     input:focus {
