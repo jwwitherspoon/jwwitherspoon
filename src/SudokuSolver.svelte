@@ -257,6 +257,7 @@
         display: table;
         background-color: initial;
         border: 1px solid black;
+        width: 1.5rem;
         /* Remove default styling on iOS */
         -webkit-appearance: none;
         -webkit-border-radius: 0;
