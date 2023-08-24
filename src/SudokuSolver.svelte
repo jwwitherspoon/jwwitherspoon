@@ -253,10 +253,11 @@
         border: 1px solid black;
     }
 
-    input {
+    input[type="text"] {
         display: table;
         background-color: initial;
         border: 1px solid black;
+        -webkit-appearance: none;
     }
 
     input:focus {
