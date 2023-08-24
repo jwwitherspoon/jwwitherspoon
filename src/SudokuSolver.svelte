@@ -253,10 +253,13 @@
         border: 1px solid black;
     }
 
-    input {
+    input[type="text"] {
         display: table;
         background-color: initial;
         border: 1px solid black;
+        /* Remove default styling on iOS */
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
     }
 
     input:focus {
