@@ -4,6 +4,9 @@
 
 <h1 class="text-center">Projects</h1>
 <div>
+    <a href="/musical-typing" use:link class="btn btn-primary">Musical Typing</a>
+</div>
+<div>
     <a href="/beef-generator" use:link class="btn btn-primary">Beef Generator</a>
 </div>
 <div>
