@@ -249,7 +249,7 @@
     #grid {
         display: grid;
         width: min-content;
-        grid: repeat(9, 1fr) / repeat(9, 1fr);
+        grid: repeat(9, 1fr) / repeat(9, 1.5rem);
         border: 1px solid black;
     }
 
@@ -257,6 +257,7 @@
         display: table;
         background-color: initial;
         border: 1px solid black;
+        width: 100%;
         /* Remove default styling on iOS */
         -webkit-appearance: none;
         -webkit-border-radius: 0;

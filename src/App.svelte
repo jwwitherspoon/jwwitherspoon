@@ -1,4 +1,5 @@
 <script>
+    import MusicalTyping from "./MusicalTyping.svelte";
     import BeefGenerator from "./BeefGenerator.svelte";
     import Home from "./Home.svelte";
     import JazzPractice from "./JazzPractice.svelte";
@@ -10,6 +11,7 @@
         '/': Home,
         '/beef-generator': BeefGenerator,
         '/jazz-practice': JazzPractice,
+        '/musical-typing': MusicalTyping,
         '/sudoku-solver': SudokuSolver,
         '/ultimate-tic-tac-toe': UltimateTicTacToe,
     };
