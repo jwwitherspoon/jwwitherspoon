@@ -1,5 +1,8 @@
 <script>
     const context = new AudioContext();
+    const masterVolume = new GainNode(context, {
+        gain: 0.3,
+    });
     const activeOscillators = new Map();
     const keycodeFrequency = new Map([
         ['KeyA', 261.63],
@@ -13,24 +16,33 @@
     ]);
     let monophonic = true;
 
+    masterVolume.connect(context.destination);
+
     function play(event) {
         if (event.repeat) return;
         if (keycodeFrequency.has(event.code)) {
             createOscillator(event.code);
         }
     }
-
+1
     function stop(event) {
         if (activeOscillators.has(event.code)) {
-            activeOscillators.get(event.code).stop();
+            endOscillator(activeOscillators.get(event.code));
             activeOscillators.delete(event.code);
         }
     }
 
+    function endOscillator(oscData) {
+        oscData.gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 0.02);
+        setTimeout(() => {
+            oscData.oscillatorNode.stop();
+        }, 100);
+    }
+
     function createOscillator(keyCode) {
         if (monophonic) {
-            for (const osc of activeOscillators.values()) {
-                osc.stop();
+            for (const oscData of activeOscillators.values()) {
+                endOscillator(oscData);
             }
             activeOscillators.clear();
         }
@@ -38,9 +50,14 @@
             frequency: keycodeFrequency.get(keyCode),
             type: 'sine',
         });
-        oscillator.connect(context.destination);
+        const gain = new GainNode(context);
+        oscillator.connect(gain).connect(masterVolume);
         oscillator.start();
-        activeOscillators.set(keyCode, oscillator);
+        const oscData = {
+            'oscillatorNode': oscillator,
+            'gainNode': gain,
+        };
+        activeOscillators.set(keyCode, oscData);
     }
 </script>
 
