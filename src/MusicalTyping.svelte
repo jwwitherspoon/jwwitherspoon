@@ -5,14 +5,19 @@
     });
     const activeOscillators = new Map();
     const keycodeFrequency = new Map([
-        ['KeyA', 261.63],
-        ['KeyS', 293.66],
-        ['KeyD', 329.63],
-        ['KeyF', 349.23],
-        ['KeyG', 392.00],
-        ['KeyH', 440.00],
-        ['KeyJ', 493.88],
-        ['KeyK', 523.25],
+        ['KeyA', 261.63], // C4
+        ['KeyW', 277.18], // C#4/Db4
+        ['KeyS', 293.66], // D4
+        ['KeyE', 311.13], // D#4/Eb4
+        ['KeyD', 329.63], // E4
+        ['KeyF', 349.23], // F4
+        ['KeyT', 369.99], // F#4/Gb4
+        ['KeyG', 392.00], // G4
+        ['KeyY', 415.30], // G#4/Ab4
+        ['KeyH', 440.00], // A4
+        ['KeyU', 466.16], // A#4/Bb4
+        ['KeyJ', 493.88], // B4
+        ['KeyK', 523.25], // C5
     ]);
     let monophonic = true;
 
