@@ -4,6 +4,13 @@
         gain: 0.3,
     });
     const activeOscillators = new Map();
+    const waveTypes = [
+        'Sine',
+        'Square',
+        'Sawtooth',
+        'Triangle',
+    ];
+    let selectedWaveType = 'sine';
     const keycodeFrequency = new Map([
         ['KeyA', 261.63], // C4
         ['KeyW', 277.18], // C#4/Db4
@@ -53,7 +60,7 @@
         }
         const oscillator = new OscillatorNode(context, {
             frequency: keycodeFrequency.get(keyCode),
-            type: 'sine',
+            type: selectedWaveType,
         });
         const gain = new GainNode(context);
         oscillator.connect(gain).connect(masterVolume);
@@ -74,7 +81,17 @@
 <label>
 	<input bind:group={monophonic} type="radio" name="phony" value={false} /> Poly
 </label>
+<div id="wave-type-wrapper">
+    <select bind:value={selectedWaveType}>
+        {#each waveTypes as waveType}
+            <option value={waveType.toLowerCase()}>{waveType}</option>
+        {/each}
+    </select>    
+</div>
 
 <style>
-
+    #wave-type-wrapper {
+        display: flex;
+        justify-content: center;
+    }
 </style>
