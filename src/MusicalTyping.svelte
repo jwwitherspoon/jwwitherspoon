@@ -11,6 +11,7 @@
         'Triangle',
     ];
     let selectedWaveType = 'sine';
+    // Note reference: https://pages.mtu.edu/~suits/notefreqs.html
     const keycodeFrequency = new Map([
         ['KeyA', 261.63], // C4
         ['KeyW', 277.18], // C#4/Db4
@@ -25,6 +26,13 @@
         ['KeyU', 466.16], // A#4/Bb4
         ['KeyJ', 493.88], // B4
         ['KeyK', 523.25], // C5
+        ['KeyO', 554.37], // C#5/Db5
+        ['KeyL', 587.33], // D4
+        ['KeyP', 622.25], // D#5/Eb5
+        ['Semicolon', 659.25], // E5
+        ['Quote', 698.46], // F5
+        ['BracketRight', 739.99], // F#5/Gb5
+        ['Enter', 783.99], // G5
     ]);
     let monophonic = true;
 
@@ -73,7 +81,7 @@
     }
 </script>
 
-<svelte:window on:keydown={play} on:keyup={stop} />
+<svelte:window on:keydown|preventDefault={play} on:keyup={stop} />
 <h1 class="text-center">Musical Typing</h1>
 <label>
 	<input bind:group={monophonic} type="radio" name="phony" value={true} /> Mono
