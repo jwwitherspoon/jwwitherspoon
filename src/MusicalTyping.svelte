@@ -44,7 +44,7 @@
             createOscillator(event.code);
         }
     }
-1
+
     function stop(event) {
         if (activeOscillators.has(event.code)) {
             endOscillator(activeOscillators.get(event.code));
