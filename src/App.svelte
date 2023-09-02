@@ -1,5 +1,5 @@
 <script>
-    import MusicalTyping from "./MusicalTyping.svelte";
+    import MusicalTyping from "./musical-typing/MusicalTyping.svelte";
     import BeefGenerator from "./BeefGenerator.svelte";
     import Home from "./Home.svelte";
     import JazzPractice from "./JazzPractice.svelte";
