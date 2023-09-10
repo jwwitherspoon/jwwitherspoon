@@ -1,4 +1,6 @@
 <script>
+    import Key from "./Key.svelte";
+
     const context = new AudioContext();
     const masterVolume = new GainNode(context, {
         gain: 0.3,
@@ -44,7 +46,7 @@
             createOscillator(event.code);
         }
     }
-1
+
     function stop(event) {
         if (activeOscillators.has(event.code)) {
             endOscillator(activeOscillators.get(event.code));
@@ -83,6 +85,42 @@
 
 <svelte:window on:keydown|preventDefault={play} on:keyup={stop} />
 <h1 class="text-center">Musical Typing</h1>
+<div id="keyboard">
+    <div class="octave">
+        <div class="key-row">
+            <Key letter="W" black />
+            <Key letter="E" black />
+            <Key hidden />
+            <Key letter="T" black />
+            <Key letter="Y" black />
+            <Key letter="U" black />
+        </div>
+        <div class="key-row">
+            <Key letter="A" />
+            <Key letter="S" />
+            <Key letter="D" />
+            <Key letter="F" />
+            <Key letter="G" />
+            <Key letter="H" />
+            <Key letter="J" />
+        </div>
+    </div>
+    <div class="octave">
+        <div class="key-row">
+            <Key letter="O" black />
+            <Key letter="P" black />
+            <Key hidden />
+            <Key letter="]" black />
+        </div>
+        <div class="key-row">
+            <Key letter="K" />
+            <Key letter="L" />
+            <Key letter=";" />
+            <Key letter="'" />
+            <Key letter="↵" />
+        </div>    
+    </div>
+</div>
 <label>
 	<input bind:group={monophonic} type="radio" name="phony" value={true} /> Mono
 </label>
@@ -98,6 +136,21 @@
 </div>
 
 <style>
+    #keyboard {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+    }
+
+    .octave {
+        margin: 0 8px;
+    }
+
+    .key-row {
+        display: flex;
+        justify-content: center;
+    }
+
     #wave-type-wrapper {
         display: flex;
         justify-content: center;
