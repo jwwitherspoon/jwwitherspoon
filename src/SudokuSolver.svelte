@@ -155,7 +155,8 @@
                     document.getElementById(i + "-" + j).value = field[i][j].value;
                     //Change new numbers to green
                     if (field[i][j].tempSolved) {
-                        document.getElementById(i + "-" + j).style.color = "lightgreen";
+                        document.getElementById(i + "-" + j).style.backgroundColor = "#1C871C";
+                        document.getElementById(i + "-" + j).style.color = "white";
                     }
                 }
             }
