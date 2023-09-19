@@ -1,85 +1,73 @@
 <script>
     import Key from "./Key.svelte";
+    import { Synth, now } from 'tone';
 
-    const context = new AudioContext();
-    const masterVolume = new GainNode(context, {
-        gain: 0.3,
-    });
-    const activeOscillators = new Map();
+    const synth = new Synth({
+        envelope: {
+            attack: 0.005,
+            decay: 0,
+            sustain: 1,
+            release: 0.02,
+        },
+    }).toDestination();
+    // get rid of scheduling delay for better response
+    synth.context.lookAhead = 0;
+
     const waveTypes = [
         'Sine',
         'Square',
         'Sawtooth',
         'Triangle',
     ];
-    let selectedWaveType = 'sine';
-    // Note reference: https://pages.mtu.edu/~suits/notefreqs.html
-    const keycodeFrequency = new Map([
-        ['KeyA', 261.63], // C4
-        ['KeyW', 277.18], // C#4/Db4
-        ['KeyS', 293.66], // D4
-        ['KeyE', 311.13], // D#4/Eb4
-        ['KeyD', 329.63], // E4
-        ['KeyF', 349.23], // F4
-        ['KeyT', 369.99], // F#4/Gb4
-        ['KeyG', 392.00], // G4
-        ['KeyY', 415.30], // G#4/Ab4
-        ['KeyH', 440.00], // A4
-        ['KeyU', 466.16], // A#4/Bb4
-        ['KeyJ', 493.88], // B4
-        ['KeyK', 523.25], // C5
-        ['KeyO', 554.37], // C#5/Db5
-        ['KeyL', 587.33], // D4
-        ['KeyP', 622.25], // D#5/Eb5
-        ['Semicolon', 659.25], // E5
-        ['Quote', 698.46], // F5
-        ['BracketRight', 739.99], // F#5/Gb5
-        ['Enter', 783.99], // G5
-    ]);
-    let monophonic = true;
 
-    masterVolume.connect(context.destination);
+    let selectedWaveType = 'sine';
+
+    const keycodeNote = new Map([
+        ['KeyA', 'C4'],
+        ['KeyW', 'Db4'],
+        ['KeyS', 'D4'],
+        ['KeyE', 'Eb4'],
+        ['KeyD', 'E4'],
+        ['KeyF', 'F4'],
+        ['KeyT', 'Gb4'],
+        ['KeyG', 'G4'],
+        ['KeyY', 'Ab4'],
+        ['KeyH', 'A4'],
+        ['KeyU', 'Bb4'],
+        ['KeyJ', 'B4'],
+        ['KeyK', 'C5'],
+        ['KeyO', 'Db5'],
+        ['KeyL', 'D5'],
+        ['KeyP', 'Eb5'],
+        ['Semicolon', 'E5'],
+        ['Quote', 'F5'],
+        ['BracketRight', 'Gb5'],
+        ['Enter', 'G5'],
+    ]);
+
+    let isSynthPlaying = false;
+
+    // Change the type of oscillator each time a new wave type is selected
+    $: synth.oscillator.type = selectedWaveType;
 
     function play(event) {
         if (event.repeat) return;
-        if (keycodeFrequency.has(event.code)) {
-            createOscillator(event.code);
+        if (keycodeNote.has(event.code)) {
+            if (isSynthPlaying) {
+                synth.setNote(keycodeNote.get(event.code));
+            } else {
+                synth.triggerAttack(keycodeNote.get(event.code));
+                isSynthPlaying = true;
+            }
         }
     }
 
     function stop(event) {
-        if (activeOscillators.has(event.code)) {
-            endOscillator(activeOscillators.get(event.code));
-            activeOscillators.delete(event.code);
+        // If the key is the one associated with the current note, stop the note
+        if (synth.toFrequency(keycodeNote.get(event.code)) === synth.frequency.getValueAtTime(now())) {
+            synth.triggerRelease();
+            isSynthPlaying = false;
         }
-    }
-
-    function endOscillator(oscData) {
-        oscData.gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 0.02);
-        setTimeout(() => {
-            oscData.oscillatorNode.stop();
-        }, 100);
-    }
-
-    function createOscillator(keyCode) {
-        if (monophonic) {
-            for (const oscData of activeOscillators.values()) {
-                endOscillator(oscData);
-            }
-            activeOscillators.clear();
-        }
-        const oscillator = new OscillatorNode(context, {
-            frequency: keycodeFrequency.get(keyCode),
-            type: selectedWaveType,
-        });
-        const gain = new GainNode(context);
-        oscillator.connect(gain).connect(masterVolume);
-        oscillator.start();
-        const oscData = {
-            'oscillatorNode': oscillator,
-            'gainNode': gain,
-        };
-        activeOscillators.set(keyCode, oscData);
     }
 </script>
 
@@ -121,12 +109,12 @@
         </div>    
     </div>
 </div>
-<label>
+<!-- <label>
 	<input bind:group={monophonic} type="radio" name="phony" value={true} /> Mono
 </label>
 <label>
 	<input bind:group={monophonic} type="radio" name="phony" value={false} /> Poly
-</label>
+</label> -->
 <div id="wave-type-wrapper">
     <select bind:value={selectedWaveType}>
         {#each waveTypes as waveType}
