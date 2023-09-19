@@ -1,8 +1,8 @@
 <script>
     import Key from "./Key.svelte";
-    import { Synth, now } from 'tone';
+    import { Synth, PolySynth, now } from 'tone';
 
-    const synth = new Synth({
+    let synth = new Synth({
         envelope: {
             attack: 0.005,
             decay: 0,
@@ -13,6 +13,36 @@
     // get rid of scheduling delay for better response
     synth.context.lookAhead = 0;
 
+    // Change the synth type each time the mono/poly type changes
+    $: if (monophonic) {
+        synth = new Synth({
+            envelope: {
+                attack: 0.005,
+                decay: 0,
+                sustain: 1,
+                release: 0.02,
+            },
+            oscillator: {
+                type: selectedWaveType,
+            },
+        }).toDestination();
+        synth.context.lookAhead = 0;
+    } else {
+        synth = new PolySynth().toDestination();
+        synth.set({
+            envelope: {
+                attack: 0.005,
+                decay: 0,
+                sustain: 1,
+                release: 0.02,
+            },
+            oscillator: {
+                type: selectedWaveType,
+            },
+        });
+        synth.context.lookAhead = 0;
+    }
+
     const waveTypes = [
         'Sine',
         'Square',
@@ -21,6 +51,7 @@
     ];
 
     let selectedWaveType = 'sine';
+    let monophonic = true;
 
     const keycodeNote = new Map([
         ['KeyA', 'C4'],
@@ -48,25 +79,67 @@
     let isSynthPlaying = false;
 
     // Change the type of oscillator each time a new wave type is selected
-    $: synth.oscillator.type = selectedWaveType;
+    $: updateWaveType(selectedWaveType);
 
+    // Play logic shared between mono and poly
     function play(event) {
         if (event.repeat) return;
         if (keycodeNote.has(event.code)) {
-            if (isSynthPlaying) {
-                synth.setNote(keycodeNote.get(event.code));
+            if (monophonic) {
+                monoPlay(keycodeNote.get(event.code));
             } else {
-                synth.triggerAttack(keycodeNote.get(event.code));
-                isSynthPlaying = true;
+                polyPlay(keycodeNote.get(event.code));
             }
         }
     }
 
+    // Mono-specific play logic
+    function monoPlay(note) {
+        if (isSynthPlaying) {
+            synth.setNote(note);
+        } else {
+            synth.triggerAttack(note);
+            isSynthPlaying = true;
+        }
+    }
+
+    // Poly-specific play logic
+    function polyPlay(note) {
+        synth.triggerAttack(note);
+    }
+
+    // Stop logic shared between mono and poly
     function stop(event) {
         // If the key is the one associated with the current note, stop the note
-        if (synth.toFrequency(keycodeNote.get(event.code)) === synth.frequency.getValueAtTime(now())) {
+        if (monophonic) {
+            monoStop(keycodeNote.get(event.code));
+        } else {
+            polyStop(keycodeNote.get(event.code));
+        }
+    }
+
+    // Mono-specific stop logic
+    function monoStop(note) {
+        if (synth.toFrequency(note) === synth.frequency.getValueAtTime(now())) {
             synth.triggerRelease();
             isSynthPlaying = false;
+        }
+    }
+
+    // Poly-specific stop logic
+    function polyStop(note) {
+        synth.triggerRelease(note);
+    }
+
+    function updateWaveType(waveType) {
+        if (monophonic) {
+            synth.oscillator.type = waveType;
+        } else {
+            synth.set({
+                oscillator: {
+                    type: waveType
+                }
+            });
         }
     }
 </script>
@@ -109,12 +182,12 @@
         </div>    
     </div>
 </div>
-<!-- <label>
+<label>
 	<input bind:group={monophonic} type="radio" name="phony" value={true} /> Mono
 </label>
 <label>
 	<input bind:group={monophonic} type="radio" name="phony" value={false} /> Poly
-</label> -->
+</label>
 <div id="wave-type-wrapper">
     <select bind:value={selectedWaveType}>
         {#each waveTypes as waveType}
