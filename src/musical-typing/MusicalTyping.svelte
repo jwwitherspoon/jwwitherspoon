@@ -1,7 +1,8 @@
 <script>
     import Key from "./Key.svelte";
-    import { Synth, PolySynth, now } from 'tone';
+    import { Synth, PolySynth, Gain, now } from 'tone';
 
+	const gainNode = new Gain(0.3).toDestination();
     let synth = new Synth({
         envelope: {
             attack: 0.005,
@@ -9,7 +10,7 @@
             sustain: 1,
             release: 0.02,
         },
-    }).toDestination();
+    }).connect(gainNode);
     // get rid of scheduling delay for better response
     synth.context.lookAhead = 0;
 
@@ -25,10 +26,10 @@
             oscillator: {
                 type: selectedWaveType,
             },
-        }).toDestination();
+        }).connect(gainNode);
         synth.context.lookAhead = 0;
     } else {
-        synth = new PolySynth().toDestination();
+        synth = new PolySynth().connect(gainNode);
         synth.set({
             envelope: {
                 attack: 0.005,
