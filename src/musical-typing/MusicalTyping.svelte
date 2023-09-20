@@ -1,85 +1,147 @@
 <script>
     import Key from "./Key.svelte";
+    import { Synth, PolySynth, Gain, now } from 'tone';
 
-    const context = new AudioContext();
-    const masterVolume = new GainNode(context, {
-        gain: 0.3,
-    });
-    const activeOscillators = new Map();
+	const gainNode = new Gain(0.3).toDestination();
+    let synth = new Synth({
+        envelope: {
+            attack: 0.005,
+            decay: 0,
+            sustain: 1,
+            release: 0.02,
+        },
+    }).connect(gainNode);
+    // get rid of scheduling delay for better response
+    synth.context.lookAhead = 0;
+
+    // Change the synth type each time the mono/poly type changes
+    $: if (monophonic) {
+        synth = new Synth({
+            envelope: {
+                attack: 0.005,
+                decay: 0,
+                sustain: 1,
+                release: 0.02,
+            },
+            oscillator: {
+                type: selectedWaveType,
+            },
+        }).connect(gainNode);
+        synth.context.lookAhead = 0;
+    } else {
+        synth = new PolySynth().connect(gainNode);
+        synth.set({
+            envelope: {
+                attack: 0.005,
+                decay: 0,
+                sustain: 1,
+                release: 0.02,
+            },
+            oscillator: {
+                type: selectedWaveType,
+            },
+        });
+        synth.context.lookAhead = 0;
+    }
+
     const waveTypes = [
         'Sine',
         'Square',
         'Sawtooth',
         'Triangle',
     ];
+
     let selectedWaveType = 'sine';
-    // Note reference: https://pages.mtu.edu/~suits/notefreqs.html
-    const keycodeFrequency = new Map([
-        ['KeyA', 261.63], // C4
-        ['KeyW', 277.18], // C#4/Db4
-        ['KeyS', 293.66], // D4
-        ['KeyE', 311.13], // D#4/Eb4
-        ['KeyD', 329.63], // E4
-        ['KeyF', 349.23], // F4
-        ['KeyT', 369.99], // F#4/Gb4
-        ['KeyG', 392.00], // G4
-        ['KeyY', 415.30], // G#4/Ab4
-        ['KeyH', 440.00], // A4
-        ['KeyU', 466.16], // A#4/Bb4
-        ['KeyJ', 493.88], // B4
-        ['KeyK', 523.25], // C5
-        ['KeyO', 554.37], // C#5/Db5
-        ['KeyL', 587.33], // D4
-        ['KeyP', 622.25], // D#5/Eb5
-        ['Semicolon', 659.25], // E5
-        ['Quote', 698.46], // F5
-        ['BracketRight', 739.99], // F#5/Gb5
-        ['Enter', 783.99], // G5
-    ]);
     let monophonic = true;
 
-    masterVolume.connect(context.destination);
+    const keycodeNote = new Map([
+        ['KeyA', 'C4'],
+        ['KeyW', 'Db4'],
+        ['KeyS', 'D4'],
+        ['KeyE', 'Eb4'],
+        ['KeyD', 'E4'],
+        ['KeyF', 'F4'],
+        ['KeyT', 'Gb4'],
+        ['KeyG', 'G4'],
+        ['KeyY', 'Ab4'],
+        ['KeyH', 'A4'],
+        ['KeyU', 'Bb4'],
+        ['KeyJ', 'B4'],
+        ['KeyK', 'C5'],
+        ['KeyO', 'Db5'],
+        ['KeyL', 'D5'],
+        ['KeyP', 'Eb5'],
+        ['Semicolon', 'E5'],
+        ['Quote', 'F5'],
+        ['BracketRight', 'Gb5'],
+        ['Enter', 'G5'],
+    ]);
 
+    let isSynthPlaying = false;
+
+    // Change the type of oscillator each time a new wave type is selected
+    $: updateWaveType(selectedWaveType);
+
+    // Play logic shared between mono and poly
     function play(event) {
         if (event.repeat) return;
-        if (keycodeFrequency.has(event.code)) {
-            createOscillator(event.code);
-        }
-    }
-
-    function stop(event) {
-        if (activeOscillators.has(event.code)) {
-            endOscillator(activeOscillators.get(event.code));
-            activeOscillators.delete(event.code);
-        }
-    }
-
-    function endOscillator(oscData) {
-        oscData.gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 0.02);
-        setTimeout(() => {
-            oscData.oscillatorNode.stop();
-        }, 100);
-    }
-
-    function createOscillator(keyCode) {
-        if (monophonic) {
-            for (const oscData of activeOscillators.values()) {
-                endOscillator(oscData);
+        if (keycodeNote.has(event.code)) {
+            if (monophonic) {
+                monoPlay(keycodeNote.get(event.code));
+            } else {
+                polyPlay(keycodeNote.get(event.code));
             }
-            activeOscillators.clear();
         }
-        const oscillator = new OscillatorNode(context, {
-            frequency: keycodeFrequency.get(keyCode),
-            type: selectedWaveType,
-        });
-        const gain = new GainNode(context);
-        oscillator.connect(gain).connect(masterVolume);
-        oscillator.start();
-        const oscData = {
-            'oscillatorNode': oscillator,
-            'gainNode': gain,
-        };
-        activeOscillators.set(keyCode, oscData);
+    }
+
+    // Mono-specific play logic
+    function monoPlay(note) {
+        if (isSynthPlaying) {
+            synth.setNote(note);
+        } else {
+            synth.triggerAttack(note);
+            isSynthPlaying = true;
+        }
+    }
+
+    // Poly-specific play logic
+    function polyPlay(note) {
+        synth.triggerAttack(note);
+    }
+
+    // Stop logic shared between mono and poly
+    function stop(event) {
+        // If the key is the one associated with the current note, stop the note
+        if (monophonic) {
+            monoStop(keycodeNote.get(event.code));
+        } else {
+            polyStop(keycodeNote.get(event.code));
+        }
+    }
+
+    // Mono-specific stop logic
+    function monoStop(note) {
+        if (synth.toFrequency(note) === synth.frequency.getValueAtTime(now())) {
+            synth.triggerRelease();
+            isSynthPlaying = false;
+        }
+    }
+
+    // Poly-specific stop logic
+    function polyStop(note) {
+        synth.triggerRelease(note);
+    }
+
+    function updateWaveType(waveType) {
+        if (monophonic) {
+            synth.oscillator.type = waveType;
+        } else {
+            synth.set({
+                oscillator: {
+                    type: waveType
+                }
+            });
+        }
     }
 </script>
 
