@@ -3,16 +3,7 @@
     import { Synth, PolySynth, Gain, now } from 'tone';
 
 	const gainNode = new Gain(0.3).toDestination();
-    let synth = new Synth({
-        envelope: {
-            attack: 0.005,
-            decay: 0,
-            sustain: 1,
-            release: 0.02,
-        },
-    }).connect(gainNode);
-    // get rid of scheduling delay for better response
-    synth.context.lookAhead = 0;
+    let synth;
 
     // Change the synth type each time the mono/poly type changes
     $: if (monophonic) {
@@ -27,7 +18,7 @@
                 type: selectedWaveType,
             },
         }).connect(gainNode);
-        synth.context.lookAhead = 0;
+        synth.context.lookAhead = 0; // get rid of scheduling delay for better response
     } else {
         synth = new PolySynth().connect(gainNode);
         synth.set({
@@ -41,7 +32,7 @@
                 type: selectedWaveType,
             },
         });
-        synth.context.lookAhead = 0;
+        synth.context.lookAhead = 0; // get rid of scheduling delay for better response
     }
 
     const waveTypes = [
