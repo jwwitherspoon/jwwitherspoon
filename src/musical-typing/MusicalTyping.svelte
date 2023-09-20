@@ -150,36 +150,36 @@
 <div id="keyboard">
     <div class="octave">
         <div class="key-row">
-            <Key letter="W" black />
-            <Key letter="E" black />
+            <Key char="W" black />
+            <Key char="E" black />
             <Key hidden />
-            <Key letter="T" black />
-            <Key letter="Y" black />
-            <Key letter="U" black />
+            <Key char="T" black />
+            <Key char="Y" black />
+            <Key char="U" black />
         </div>
         <div class="key-row">
-            <Key letter="A" />
-            <Key letter="S" />
-            <Key letter="D" />
-            <Key letter="F" />
-            <Key letter="G" />
-            <Key letter="H" />
-            <Key letter="J" />
+            <Key char="A" />
+            <Key char="S" />
+            <Key char="D" />
+            <Key char="F" />
+            <Key char="G" />
+            <Key char="H" />
+            <Key char="J" />
         </div>
     </div>
     <div class="octave">
         <div class="key-row">
-            <Key letter="O" black />
-            <Key letter="P" black />
+            <Key char="O" black />
+            <Key char="P" black />
             <Key hidden />
-            <Key letter="]" black />
+            <Key char="]" black />
         </div>
         <div class="key-row">
-            <Key letter="K" />
-            <Key letter="L" />
-            <Key letter=";" />
-            <Key letter="'" />
-            <Key letter="↵" />
+            <Key char="K" />
+            <Key char="L" />
+            <Key char=";" />
+            <Key char="'" />
+            <Key char="↵" />
         </div>    
     </div>
 </div>

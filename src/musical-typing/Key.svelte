@@ -1,11 +1,11 @@
 <script>
-    export let letter = '';
+    export let char = '';
     export let black = false;
     export let hidden = false;
 </script>
 
 <div id="key" class:black={black} class:hidden={hidden}>
-    <span id="letter">{letter}</span>
+    <span id="char">{char}</span>
 </div>
 
 <style>
@@ -20,7 +20,7 @@
         margin: 0 1px;
     }
 
-    #letter {
+    #char {
         padding: 5px;
         text-align: right;
     }
