@@ -42,3 +42,7 @@ h1 {
 .btn:visited {
 	color: black;
 }
+
+table {
+	border-collapse: collapse;
+}
