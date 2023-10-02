@@ -31,7 +31,7 @@
 
 <h1>Jazz Practice Tools</h1>
 <p>{message}</p>
-<div class="button-wrapper">
+<div class="btn-wrapper">
     <button type="button" class="btn" on:click={generateKey}>Random Key</button>
     <button type="button" class="btn" on:click={generateChord}>Random Chord</button>
 </div>
@@ -51,7 +51,7 @@
         margin: 10px;
     }
 
-    .button-wrapper {
+    .btn-wrapper {
         display: flex;
         justify-content: center;
     }
