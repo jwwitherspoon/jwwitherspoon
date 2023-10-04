@@ -251,6 +251,7 @@
         border: 1px solid black;
         font-size: 1.25rem;
         text-align: center;
+        margin: 0;
         /* Remove default styling on iOS */
         -webkit-appearance: none;
         -webkit-border-radius: 0;
