@@ -230,7 +230,7 @@
     <button type="button" class="btn" on:click={solve}>Solve</button>
     <button type="button" class="btn" on:click={reset}>Reset</button>
 </div>
-<h3 id="message"></h3>
+<p id="message"></p>
 
 <style scoped>
     #grid-container {
@@ -269,5 +269,11 @@
     .btn-wrapper {
         display: flex;
         justify-content: center;
+    }
+    
+    p {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 1.25rem;
     }
 </style>
