@@ -29,27 +29,29 @@
     }
 </script>
 
-<div class="row justify-content-center">
-    <h2>Jazz Practice Tools</h2>
-</div>
-<div>
-    <p class="my-4">{message}</p>
-</div>
-<div class="row justify-content-around">
-    <div class="col align-items-center">
-        <button type="button" class="btn btn-primary" on:click={generateKey}>Random Key</button>
-    </div>
-    <div class="col align-items-center">
-        <button type="button" class="btn btn-primary" on:click={generateChord}>Random Chord</button>
-    </div>
+<h1>Jazz Practice Tools</h1>
+<p>{message}</p>
+<div class="btn-wrapper">
+    <button type="button" class="btn" on:click={generateKey}>Random Key</button>
+    <button type="button" class="btn" on:click={generateChord}>Random Chord</button>
 </div>
 
 <style scoped>
-    h2 {
+    h1 {
         padding: 0 1rem;
+    }
+
+    p {
+        margin: 50px 0;
+        font-size: 1.25rem;
     }
 
     .btn {
         margin: 10px;
+    }
+
+    .btn-wrapper {
+        display: flex;
+        justify-content: center;
     }
 </style>

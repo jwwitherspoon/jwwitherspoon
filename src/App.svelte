@@ -17,28 +17,23 @@
     };
 </script>
 
-<div class="container">
-    <div class="mx-auto rounded text-center">
-        <Router {routes}/>
-    </div>
+<div id="container">
+    <Router {routes}/>
 </div>
 
 <style scoped>
-    .container {
-        align-content: center;
-        padding-top: 8%;
-    }
-
-    .mx-auto {
+    #container {
+        text-align: center;
         width: 500px;
         margin: 20px;
         background-color: #f7f7f7;
         opacity: 0.8;
         padding: 20px;
+        border-radius: 5px;
     }
 
     @media only screen and (max-width: 600px) {
-        .mx-auto {
+        #container {
             width: 280px;
         }
     }

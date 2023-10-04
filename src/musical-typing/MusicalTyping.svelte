@@ -137,7 +137,7 @@
 </script>
 
 <svelte:window on:keydown|preventDefault={play} on:keyup={stop} />
-<h1 class="text-center">Musical Typing</h1>
+<h1>Musical Typing</h1>
 <div id="keyboard">
     <div class="octave">
         <div class="key-row">
@@ -207,5 +207,9 @@
     #wave-type-wrapper {
         display: flex;
         justify-content: center;
+    }
+
+    select {
+        margin-top: 10px;
     }
 </style>

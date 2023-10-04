@@ -215,29 +215,21 @@
     }
 </script>
 
-<div class="row">
-    <div class="col text-center">
-        <h1>Sudoku Solver</h1>
-    </div>
-</div>
+<h1>Sudoku Solver</h1>
 <div id="grid-container">
     <div id="grid">
         {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as i}
             {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as j}
-                <input type="text" id={i + '-' + j} class="text-center" size="1" maxlength="1">
+                <input type="text" id={i + '-' + j} size="1" maxlength="1">
             {/each}
         {/each}
     </div>
 </div>
-<div class="row justify-content-center">
-    <button type="button" class="btn btn-primary" on:click={solve}>Solve</button>
-    <button type="button" class="btn btn-primary" on:click={reset}>Reset</button>
+<div class="btn-wrapper">
+    <button type="button" class="btn" on:click={solve}>Solve</button>
+    <button type="button" class="btn" on:click={reset}>Reset</button>
 </div>
-<div class="row">
-    <div class="col text-center">
-        <h3 id="message"></h3>
-    </div>
-</div>
+<h3 id="message"></h3>
 
 <style scoped>
     #grid-container {
@@ -250,15 +242,15 @@
     #grid {
         display: grid;
         width: min-content;
-        grid: repeat(9, 1fr) / repeat(9, 1.5rem);
+        grid: repeat(9, 2.25rem) / repeat(9, 1.75rem);
         border: 1px solid black;
     }
 
     input[type="text"] {
-        display: table;
         background-color: initial;
         border: 1px solid black;
-        width: 100%;
+        font-size: 1.25rem;
+        text-align: center;
         /* Remove default styling on iOS */
         -webkit-appearance: none;
         -webkit-border-radius: 0;
@@ -269,6 +261,11 @@
     }
 
     .btn {
-        margin: 10px;
+        margin: 10px 10px 0 10px;
+    }
+
+    .btn-wrapper {
+        display: flex;
+        justify-content: center;
     }
 </style>

@@ -32,12 +32,12 @@
     }
 </script>
 
-<h1 class="text-center">Beef Generator</h1>
+<h1>Beef Generator</h1>
 <div id="input-wrapper">
     <input type="text" bind:value={imageUrl} placeholder="Image Link to Beefify">
-    <button id="beefify" type="button" class="btn btn-primary" on:click="{beefify}">Beefify</button>	
+    <button type="button" class="btn" on:click="{beefify}">Beefify</button>	
 </div>
-<p class="text-center">
+<p>
     Right-click the emoji and click "Save As" to download it. This is to bypass CORS, so use at your own risk!
 </p>
 <div>
