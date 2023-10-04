@@ -458,219 +458,209 @@
     }
 </script>
 
-<div class="row">
-    <div class="col text-center">
-        <h1>Ultimate Tic-Tac-Toe</h1>
-    </div>
-</div>
-<div class="row justify-content-center">
-    <table>
-        <tbody>
-            <tr>
-                <td id="0" class="outer-cell top-left-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="0-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="0-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="0-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="0-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="0-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="0-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="0-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="0-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="0-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td id="1" class="outer-cell top-center-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="1-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="1-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="1-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="1-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="1-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="1-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="1-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="1-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="1-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td id="2" class="outer-cell top-right-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="2-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="2-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="2-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="2-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="2-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="2-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="2-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="2-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="2-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td id="3" class="outer-cell center-left-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="3-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="3-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="3-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="3-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="3-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="3-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="3-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="3-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="3-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td id="4" class="outer-cell center-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="4-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="4-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="4-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="4-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="4-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="4-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="4-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="4-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="4-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td id="5" class="outer-cell center-right-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="5-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="5-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="5-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="5-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="5-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="5-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="5-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="5-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="5-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td id="6" class="outer-cell bottom-left-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="6-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="6-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="6-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="6-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="6-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="6-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="6-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="6-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="6-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td id="7" class="outer-cell bottom-center-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="7-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="7-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="7-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="7-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="7-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="7-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="7-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="7-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="7-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td id="8" class="outer-cell bottom-right-cell">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td id="8-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="8-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="8-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="8-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="8-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="8-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                            <tr>
-                                <td id="8-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="8-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
-                                <td id="8-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="row">
-    <div class="col text-center">
-        <h3 id="message">Player X's Turn</h3>
-    </div>
-</div>
-<div class="row justify-content-center">
-    <button type="button" class="btn btn-primary" on:click={reset}>Reset</button>
+<h1>Ultimate Tic-Tac-Toe</h1>
+<table>
+    <tbody>
+        <tr>
+            <td id="0" class="outer-cell top-left-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="0-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="0-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="0-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="0-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="0-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="0-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="0-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="0-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="0-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="1" class="outer-cell top-center-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="1-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="1-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="1-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="1-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="1-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="1-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="1-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="1-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="1-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="2" class="outer-cell top-right-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="2-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="2-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="2-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="2-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="2-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="2-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="2-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="2-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="2-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td id="3" class="outer-cell center-left-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="3-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="3-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="3-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="3-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="3-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="3-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="3-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="3-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="3-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="4" class="outer-cell center-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="4-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="4-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="4-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="4-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="4-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="4-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="4-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="4-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="4-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="5" class="outer-cell center-right-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="5-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="5-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="5-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="5-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="5-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="5-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="5-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="5-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="5-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td id="6" class="outer-cell bottom-left-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="6-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="6-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="6-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="6-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="6-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="6-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="6-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="6-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="6-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="7" class="outer-cell bottom-center-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="7-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="7-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="7-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="7-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="7-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="7-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="7-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="7-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="7-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="8" class="outer-cell bottom-right-cell">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="8-0" class="inner-cell top-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="8-1" class="inner-cell top-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="8-2" class="inner-cell top-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="8-3" class="inner-cell center-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="8-4" class="inner-cell center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="8-5" class="inner-cell center-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                        <tr>
+                            <td id="8-6" class="inner-cell bottom-left-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="8-7" class="inner-cell bottom-center-cell" on:click={event => {makeMove(event)}}></td>
+                            <td id="8-8" class="inner-cell bottom-right-cell" on:click={event => {makeMove(event)}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="message">Player X's Turn</h3>
+<div class="btn-wrapper">
+    <button class="btn" on:click={reset}>Reset</button>
 </div>
 
 <style scoped>
@@ -739,7 +729,8 @@
         border-width: medium;
     }
 
-    .btn {
-        margin: 10px;
+    .btn-wrapper {
+        display: flex;
+        justify-content: center;
     }
 </style>
