@@ -658,7 +658,7 @@
         </tr>
     </tbody>
 </table>
-<h3 id="message">Player X's Turn</h3>
+<p id="message">Player X's Turn</p>
 <div class="btn-wrapper">
     <button class="btn" on:click={reset}>Reset</button>
 </div>
@@ -727,6 +727,11 @@
         width: 40px;
         height: 40px;
         border-width: medium;
+    }
+
+    #message {
+        font-size: 1.5rem;
+        margin: 15px 0;
     }
 
     .btn-wrapper {

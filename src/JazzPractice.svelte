@@ -42,7 +42,6 @@
     }
 
     p {
-        display: block;
         margin: 50px 0;
         font-size: 1.25rem;
     }
