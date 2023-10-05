@@ -208,7 +208,7 @@
         for (let i=0; i<9; i++) {
             for (let j=0; j<9; j++) {
                 document.getElementById(i + "-" + j).value = "";
-                document.getElementById(i + "-" + j).style.backgroundColor = "initial";
+                document.getElementById(i + "-" + j).style.backgroundColor = "#f7f7f7";
                 document.getElementById(i + "-" + j).style.color = "black";
             }
         }
@@ -220,9 +220,11 @@
 <div id="grid-container">
     <div id="grid">
         {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as i}
-            {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as j}
-                <input type="text" id={i + '-' + j} size="1" maxlength="1">
-            {/each}
+            <div class="cell">
+                {#each [0, 1, 2, 3, 4, 5, 6, 7, 8] as j}
+                    <input type="text" id={i + '-' + j} size="1" maxlength="1">
+                {/each}
+            </div>
         {/each}
     </div>
 </div>
@@ -243,12 +245,20 @@
     #grid {
         display: grid;
         width: min-content;
-        grid: repeat(9, 2.25rem) / repeat(9, 1.75rem);
+        grid: repeat(3, 1fr) / repeat(3, 1fr);
         border: 1px solid black;
+        /* Provide fake border */
+        background-color: black;
+        gap: 3px;
+    }
+
+    .cell {
+        display: grid;
+        grid: repeat(3, 2.25rem) / repeat(3, 1.75rem);
     }
 
     input[type="text"] {
-        background-color: initial;
+        background-color: #f7f7f7;
         border: 1px solid black;
         font-size: 1.25rem;
         text-align: center;
